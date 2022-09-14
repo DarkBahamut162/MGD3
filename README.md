@@ -22,7 +22,6 @@ What has been fixed/added by me so far:
 * **Two Player Functionality** pretty much everywhere
 * Added **Quality of Life** changes
   * Optional changes to ScreenSelectMusic/Course's **Acceleration** selection
-    * Switch **Difficulty Controls** from menu to non-menu input (mostly for OutFox)
     * Added **Inverted Controls**
   * Added **Song Indications** for the following:
     * **Mines** if the song has them
@@ -33,12 +32,11 @@ What has been fixed/added by me so far:
       * Changes color to **ORANGE** if **TRUE BPM** goes beyond current **DISPLAYBPM** but don't last that long
       * Changes color to **GREEN** if **TRUE BPM** goes below current **DISPLAYBPM**
     * Changes color to **YELLOW** if **BPM** does reach max speed but doesn't last that long
-    * Shows **ROLLS** and **LIFTS** in **HOLDS** row if available
+    * Shows **HOLDS**, **ROLLS** and/or **LIFTS** depending on availability
     * Shows a **?** in **STEPS** row if song has **FAKES**
-  * Added **Difficulty Display Setting** in **Theme Settings** to calculate MGD-like difficulties for all songs *(set as default)*
+  * Added **Difficulty Display Setting** in **Theme Settings** to calculate MGD-like difficulties for all songs/courses *(set as default)*
   * Fixed **Life Setting** in **Theme Settings** to calculate **MGD-like life amount for all songs**
   * **Questions Acceleration** if X-Mods are already used in Courses
   * Forced implementation of **NoteSkin** and selected **Accelerator** in Course/Extra Mode via ApplyGameCommand
-  * **Maximum Lives** forcibly set to **100**
 
 Stuff still might need to get fixed and a few more QoL changes need to be implemented, but because of no interest, this project is halted (for now).

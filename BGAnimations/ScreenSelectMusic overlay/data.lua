@@ -84,7 +84,11 @@ return Def.ActorFrame{
 					cs.Title:diffuse(Color("White"))
 				end
 			else
-				cs.Title:settext("No Song Selected")
+				if SONGMAN:GetNumSongs() == 0 and SONGMAN:GetNumAdditionalSongs() == 0 then
+					cs.Title:settext("No Songs Available")
+				else
+					cs.Title:settext("No Song Selected")
+				end
 				cs.Title:diffuse(Color("White"))
 				cs.Artist:diffusealpha(0)
 				cs.Time:diffusealpha(0)

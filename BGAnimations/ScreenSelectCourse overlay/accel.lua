@@ -6,22 +6,26 @@ local questionMark = ""
 
 function DoesCourseHasX()
 	local course = GAMESTATE:GetCurrentCourse()
-	local filePath = course:GetCourseDir()
-	local file = RageFileUtil.CreateRageFile()
-	file:Open(filePath,1)
-	file:Seek(0)
-	local gLine = ""
-	local line
-	while true do
-		line=file:GetLine()
-		if string.find(line,"#NOTES:.*") or file:AtEOF() then break
-		elseif (string.find(line,"^.*#MOD:.*") and (not string.find(line,"^%/%/.*"))) or gLine~="" then
-			gLine=gLine..""..split("//",line)[1]
+	if course then
+		local filePath = course:GetCourseDir()
+		local file = RageFileUtil.CreateRageFile()
+		file:Open(filePath,1)
+		file:Seek(0)
+		local gLine = ""
+		local line
+		while true do
+			line=file:GetLine()
+			if string.find(line,"#NOTES:.*") or file:AtEOF() then break
+			elseif (string.find(line,"^.*#MOD:.*") and (not string.find(line,"^%/%/.*"))) or gLine~="" then
+				gLine=gLine..""..split("//",line)[1]
+			end
 		end
+		if string.find(gLine,"[0-9]?[.]*[0-9]*[0-9]x") then questionMark = "?" else questionMark = "" end
+		file:Close()
+		file:destroy()
+	else
+		questionMark = ""
 	end
-	if string.find(gLine,"[0-9]?[.]*[0-9]*[0-9]x") then questionMark = "?" else questionMark = "" end
-	file:Close()
-	file:destroy()
 end
 
 return Def.ActorFrame{

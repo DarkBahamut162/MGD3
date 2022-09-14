@@ -29,49 +29,50 @@ return Def.ActorFrame{
 			InitCommand=function(self) self:horizalign(center):y(88):x(69) end
 		},
 		SetCommand=function(self)
-			if GAMESTATE:IsCourseMode() then
-				trail = GAMESTATE:GetCurrentTrail(mPlayer)
-				if trail then
-					steps = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_TapsAndHolds')
-					fakes = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Fakes')
-					jumps = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Jumps')
-					hands = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Hands')
-					holds = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Holds')
-					rolls = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Rolls')
-					lifts = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Lifts')
-					mines = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Mines')
+			trail = GAMESTATE:GetCurrentTrail(mPlayer)
+			if trail then
+				steps = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_TapsAndHolds')
+				fakes = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Fakes')
+				jumps = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Jumps')
+				hands = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Hands')
+				holds = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Holds')
+				rolls = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Rolls')
+				lifts = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Lifts')
+				mines = trail:GetRadarValues(mPlayer):GetValue('RadarCategory_Mines')
 
-					course = GAMESTATE:GetCurrentCourse()
-					local title = course:GetDisplayFullTitle()
-					c.Title:maxwidth(325)
-					c.Title:settext(title)
+				course = GAMESTATE:GetCurrentCourse()
+				local title = course:GetDisplayFullTitle()
+				c.Title:maxwidth(325)
+				c.Title:settext(title)
 
-					local artist = course:GetScripter() ~= "" and course:GetScripter() or "??????????"
-					c.Artist:maxwidth(325)
-					c.Artist:settext("Programmed by "..artist)
+				local artist = course:GetScripter() ~= "" and course:GetScripter() or "??????????"
+				c.Artist:maxwidth(325)
+				c.Artist:settext("Programmed by "..artist)
 
-					local seconds, trueseconds = 0, 0
+				local seconds, trueseconds = 0, 0
 
-					for entry in ivalues(course:GetCourseEntries()) do
-						if entry:GetSong() then
-							seconds = seconds + entry:GetSong():MusicLengthSeconds()
-							local firstsecond = entry:GetSong():GetFirstSecond()
-							local lastsecond = entry:GetSong():GetLastSecond()
-							trueseconds = trueseconds + (lastsecond - firstsecond)
-						end
+				for entry in ivalues(course:GetCourseEntries()) do
+					if entry:GetSong() then
+						seconds = seconds + entry:GetSong():MusicLengthSeconds()
+						local firstsecond = entry:GetSong():GetFirstSecond()
+						local lastsecond = entry:GetSong():GetLastSecond()
+						trueseconds = trueseconds + (lastsecond - firstsecond)
 					end
-
-					c.Artist:diffusealpha(1)
-					c.Time:maxwidth(128):diffusealpha(1):settext(SecondsToMMSSMsMs(seconds))
-					c.Time:effectclock('timer'):diffuseshift():effectcolor1(color("#FFFFFFFF")):effectcolor2(color("#00000000")):effectperiod(4)
-					c.TrueTime:maxwidth(128):diffusealpha(1):settext(SecondsToMMSSMsMs(trueseconds))
-					c.TrueTime:effectclock('timer'):diffuseshift():effectcolor1(color("#00000000")):effectcolor2(color("#FFFFFFFF")):effectperiod(4)
-
-					c.Title:diffusealpha(1)
-					c.Artist:diffusealpha(1)
 				end
+
+				c.Artist:diffusealpha(1)
+				c.Time:maxwidth(128):diffusealpha(1):settext(SecondsToMMSSMsMs(seconds))
+				c.Time:effectclock('timer'):diffuseshift():effectcolor1(color("#FFFFFFFF")):effectcolor2(color("#00000000")):effectperiod(4)
+				c.TrueTime:maxwidth(128):diffusealpha(1):settext(SecondsToMMSSMsMs(trueseconds))
+				c.TrueTime:effectclock('timer'):diffuseshift():effectcolor1(color("#00000000")):effectcolor2(color("#FFFFFFFF")):effectperiod(4)
+
+				c.Artist:diffusealpha(1)
 			else
-				c.Title:diffusealpha(0)
+				if #SONGMAN:GetAllCourses(PREFSMAN:GetPreference("AutogenGroupCourses")) == 0 and SONGMAN:GetNumAdditionalCourses() == 0 then
+					c.Title:settext("No Courses Available")
+				else
+					c.Title:settext("No Course Selected")
+				end
 				c.Artist:diffusealpha(0)
 				c.Time:diffusealpha(0)
 				c.TrueTime:diffusealpha(0)
@@ -110,9 +111,11 @@ return Def.ActorFrame{
 			SetCommand=function(self)
 				local name = ""
 				if trail then
-					if holds > 0 or (holds == 0 and rolls == 0 and lifts == 0) then name = name.."HOLDS" end
+					if holds > 0 or (holds == 0 and rolls == 0 and lifts == 0) then name = "HOLDS" end
 					if rolls > 0 then if name ~= "" then name = name.."+ROLLS" else name = "ROLLS" end end
 					if lifts > 0 then if name ~= "" then name = name.."+LIFTS" else name = "LIFTS" end end
+				else
+					name = "HOLDS"
 				end
 				self:settext(name)
 			end

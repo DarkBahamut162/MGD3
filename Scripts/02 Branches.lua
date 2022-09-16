@@ -28,15 +28,7 @@ end
 Branch = {
 	Init = function() return "ScreenInit" end,
 	AfterInit = function()
-		if GAMESTATE:GetCoinMode() == 'CoinMode_Home' then
-			return Branch.TitleMenu()
-		else
-			return "ScreenLogo"
-		end
-	end,
-	NoiseTrigger = function()
-		local hour = Hour()
-		return hour > 3 and hour < 6 and "ScreenNoise" or "ScreenHighScores"
+		return Branch.TitleMenu()
 	end,
 	TitleMenu = function()
 		if GAMESTATE:GetCoinMode() == "CoinMode_Home" then
@@ -49,58 +41,10 @@ Branch = {
 		end
 	end,
 	AfterTitleMenu = function()
-		if PREFSMAN:GetPreference("ShowCaution") then
-			return "ScreenCaution"
-		else
-			return Branch.StartGame()
-		end
+		return Branch.StartGame()
 	end,
 	StartGame = function()
-		if SONGMAN:GetNumSongs() == 0 and SONGMAN:GetNumAdditionalSongs() == 0 then
-			return "ScreenHowToInstallSongs"
-		end
-		if PROFILEMAN:GetNumLocalProfiles() >= 2 then
-			return "ScreenSelectProfile"
-		else
-			if IsNetConnected() then
-				return "ScreenSelectStyle"
-			else
-				if THEME:GetMetric("Common","AutoSetStyle") == false then
-					return "ScreenSelectStyle"
-				else
-					return "ScreenProfileLoad"
-				end
-			end
-		end
-	end,
-	OptionsEdit = function()
-		if SONGMAN:GetNumSongs() == 0 and SONGMAN:GetNumAdditionalSongs() == 0 then
-			return "ScreenHowToInstallSongs"
-		end
-		return "ScreenOptionsEdit"
-	end,
-	AfterSelectStyle = function()
-		if IsNetConnected() then
-			ReportStyle()
-			GAMESTATE:ApplyGameCommand("playmode,regular")
-		end
-		if IsNetSMOnline() then
-			return SMOnlineScreen()
-		end
-		if IsNetConnected() then
-			return "ScreenNetRoom"
-		end
-		return "ScreenProfileLoad"
-	end,
-	AfterSelectProfile = function()
-		if ( THEME:GetMetric("Common","AutoSetStyle") == true ) then
-			return IsNetConnected() and "ScreenSelectStyle" or "ScreenSelectPlayMode"
-		else
-			return "ScreenSelectStyle"
-		end
-	end,
-	AfterProfileLoad = function()
-		return "ScreenSelectPlayMode"
+		return "ScreenSelectStyle"
 	end,
 	AfterProfileSave = function()
 		if GAMESTATE:IsEventMode() then
@@ -116,10 +60,6 @@ Branch = {
 		else
 			return SelectMusicOrCourse()
 		end
-	end,
-	GetGameInformationScreen = function()
-		bTrue = PREFSMAN:GetPreference("ShowInstructions")
-		return (bTrue and GoToMusic() or "ScreenGameInformation")
 	end,
 	AfterSMOLogin = SMOnlineScreen(),
 	BackOutOfPlayerOptions = function()
@@ -167,23 +107,6 @@ Branch = {
 		end
 	end,
 	AfterGameplay = function()
-		if THEME:GetMetric("ScreenHeartEntry", "HeartEntryEnabled") then
-			local go_to_heart= false
-			for i, pn in ipairs(GAMESTATE:GetEnabledPlayers()) do
-				local profile= PROFILEMAN:GetProfile(pn)
-				if profile and profile:GetIgnoreStepCountCalories() then
-					go_to_heart= true
-				end
-			end
-			if go_to_heart then
-				return "ScreenHeartEntry"
-			end
-			return Branch.EvaluationScreen()
-		else
-			return Branch.EvaluationScreen()
-		end
-	end,
-	AfterHeartEntry= function()
 		return Branch.EvaluationScreen()
 	end,
 	AfterEvaluation = function()

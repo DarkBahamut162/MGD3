@@ -17,6 +17,8 @@ for pn in ivalues(GAMESTATE:GetEnabledPlayers()) do
 	end
 end
 
+GAMESTATE:SetFailTypeExplicitlySet(true)
+
 local t = Def.ActorFrame{}
 
 if GAMESTATE:IsCourseMode() then

@@ -50,12 +50,5 @@ return Def.ActorFrame{
 			c["Judgment"..(param.FirstTrack+1)]:setstate( iFrame )
 			c["Judgment"..(param.FirstTrack+1)]:visible( true )
 		end
-	end,
-	HealthStateChangedMessageCommand=function(self, param)
-		local State = GAMESTATE:GetPlayerState(player)
-		local PlayerOptions = GAMESTATE:GetPlayerState(player):GetPlayerOptions("ModsLevel_Preferred")
-		if State:GetHealthState() == "HealthState_Dead" and (PlayerOptions:FailSetting() == "FailType_Immediate") then
-			self:visible(false)
-		end
 	end
 }

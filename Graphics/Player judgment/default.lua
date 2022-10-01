@@ -5,26 +5,54 @@ local TNSFrames = {
 	HoldNoteScore_LetGo = 1
 }
 
+local arrows = GAMESTATE:GetCurrentStyle():ColumnsPerPlayer()
+local arrowPos = {}
+local space = IsGame("Pump") and 50 or 64
+local startFromZero = arrows % 2 == 0 and false or true
+local centerPosition = math.round(arrows / 2)
+
+local addToI = arrows % 2 == 0 and 0 or 1
+local subToArrows = arrows % 2 == 0 and 1 or 0
+
+for i=addToI,arrows-subToArrows do
+	if i < centerPosition then
+		arrowPos[i-addToI] = (centerPosition-i)*-space
+	else
+		arrowPos[i-addToI] = (i-centerPosition)*space
+	end
+	if arrows % 2 == 0 then arrowPos[i-addToI] = arrowPos[i-addToI] + space/2 end
+end
+
 return Def.ActorFrame{
 	LoadActor("../HoldJudgment label 1x2")..{
+		Condition=arrows>=1,
 		Name="Judgment1",
 		InitCommand=function(self) self:pause():visible(false) end,
-		ResetCommand=function(self) self:finishtweening():x(-96):y(-146):stopeffect():visible(false) end
+		ResetCommand=function(self) self:finishtweening():x(arrowPos[0]):y(-146):stopeffect():visible(false) end
 	},
 	LoadActor("../HoldJudgment label 1x2")..{
+		Condition=arrows>=2,
 		Name="Judgment2",
 		InitCommand=function(self) self:pause():visible(false) end,
-		ResetCommand=function(self) self:finishtweening():x(-32):y(-146):stopeffect():visible(false) end
+		ResetCommand=function(self) self:finishtweening():x(arrowPos[1]):y(-146):stopeffect():visible(false) end
 	},
 	LoadActor("../HoldJudgment label 1x2")..{
+		Condition=arrows>=3,
 		Name="Judgment3",
 		InitCommand=function(self) self:pause():visible(false) end,
-		ResetCommand=function(self) self:finishtweening():x(32):y(-146):stopeffect():visible(false) end
+		ResetCommand=function(self) self:finishtweening():x(arrowPos[2]):y(-146):stopeffect():visible(false) end
 	},
 	LoadActor("../HoldJudgment label 1x2")..{
+		Condition=arrows>=4,
 		Name="Judgment4",
 		InitCommand=function(self) self:pause():visible(false) end,
-		ResetCommand=function(self) self:finishtweening():x(96):y(-146):stopeffect():visible(false) end
+		ResetCommand=function(self) self:finishtweening():x(arrowPos[3]):y(-146):stopeffect():visible(false) end
+	},
+	LoadActor("../HoldJudgment label 1x2")..{
+		Condition=arrows>=5,
+		Name="Judgment5",
+		InitCommand=function(self) self:pause():visible(false) end,
+		ResetCommand=function(self) self:finishtweening():x(arrowPos[4]):y(-146):stopeffect():visible(false) end
 	},
 	InitCommand = function(self)
 		c = self:GetChildren()

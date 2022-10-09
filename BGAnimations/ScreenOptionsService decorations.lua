@@ -1,6 +1,6 @@
 return Def.ActorFrame{
 	LoadActor("Logo/mgdlogo")..{
-		InitCommand=function(self) self:Center():blend('BlendMode_Add'):diffusealpha(0.25) end
+		InitCommand=function(self) self:Center():blend(Blend.Add):diffusealpha(0.25) end
 	},
 	Def.Quad{
 		OnCommand=function(self) self:FullScreen():diffusecolor(Color.Black):diffusealpha(0.7) end

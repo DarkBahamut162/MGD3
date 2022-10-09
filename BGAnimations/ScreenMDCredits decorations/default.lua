@@ -1,6 +1,6 @@
 return Def.ActorFrame{
 	LoadActor("bg")..{
-		OnCommand=function(self) self:x(SCREEN_CENTER_X+1680):CenterY():blend('BlendMode_Add'):linear(120):x(SCREEN_CENTER_X-2920) end
+		OnCommand=function(self) self:x(SCREEN_CENTER_X+1680):CenterY():blend(Blend.Add):linear(120):x(SCREEN_CENTER_X-2920) end
 	},
 	Def.Quad{
 		OnCommand=function(self) self:FullScreen():diffusecolor(Color.Black):diffusealpha(0.5) end

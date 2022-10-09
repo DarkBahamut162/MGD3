@@ -7,7 +7,7 @@ return Def.ActorFrame{
 	},
 	LoadActor("../../dash-bg")..{
 		BeginCommand=function(self) self:Center() end,
-		OnCommand=function(self) self:diffusealpha(0):sleep(1.437):blend('BlendMode_Add'):zoom(3):diffusealpha(0):decelerate(2):zoom(1):diffusealpha(1) end
+		OnCommand=function(self) self:diffusealpha(0):sleep(1.437):blend(Blend.Add):zoom(3):diffusealpha(0):decelerate(2):zoom(1):diffusealpha(1) end
 	},
 	Def.Quad{
 		OnCommand=function(self) self:FullScreen():diffusecolor(Color.White):diffusealpha(0):sleep(1.437):diffusealpha(1):rainbow():diffusealpha(1):linear(1):diffusealpha(0) end

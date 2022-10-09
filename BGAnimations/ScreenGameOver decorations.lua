@@ -1,6 +1,6 @@
 return Def.ActorFrame{
 	LoadActor("ScreenMDCredits decorations/solong")..{
-		InitCommand=function(self) self:Center():blend('BlendMode_Add'):diffusealpha(0.5) end
+		InitCommand=function(self) self:Center():blend(Blend.Add):diffusealpha(0.5) end
 	},
 	LoadFont("MusicList titles")..{
 		Text="GAME OVER",

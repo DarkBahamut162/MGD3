@@ -38,7 +38,7 @@ return Def.ActorFrame{
 			end
 		end,
 		HealthStateChangedMessageCommand=function(self, param)
-			if param.HealthState == 'HealthState_Dead' then --If player dies
+			if param.HealthState == Health.Dead then --If player dies
 				if param.PlayerNumber == PLAYER_1 and player == PLAYER_1 and not moved then --Move P1's filter if P1 dies
 					--self:linear(0.1):zoom(0)
 					moved = true

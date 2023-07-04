@@ -87,7 +87,8 @@ return Def.ActorFrame{
 				if SONGMAN:GetNumSongs() == 0 and SONGMAN:GetNumAdditionalSongs() == 0 then
 					cs.Title:settext("No Songs Available")
 				else
-					cs.Title:settext("No Song Selected")
+					local wheel = SCREENMAN:GetTopScreen():GetMusicWheel()
+					cs.Title:settext(wheel:GetSelectedSection())
 				end
 				cs.Title:diffuse(Color("White"))
 				cs.Artist:diffusealpha(0)

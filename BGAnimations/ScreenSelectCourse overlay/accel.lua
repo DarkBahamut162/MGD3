@@ -3,6 +3,7 @@ local sIdx = {PlayerNumber_P1=2,PlayerNumber_P2=2}
 local sMax = #SpeedMods
 local invert = ThemePrefs.Get("InvertAccel") and -1 or 1
 local questionMark = ""
+local courseMode = GAMESTATE:IsCourseMode()
 
 function DoesCourseHasX()
 	local course = GAMESTATE:GetCurrentCourse()
@@ -86,9 +87,11 @@ return Def.ActorFrame{
 				self:settext(SpeedMods[sIdx[PLAYER_1]]..questionMark)
 			end,
 			CurrentCourseChangedMessageCommand=function(self)
-				DoesCourseHasX()
-				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-					self:settext(SpeedMods[sIdx[PLAYER_1]]..questionMark)
+				if courseMode then
+					DoesCourseHasX()
+					if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+						self:settext(SpeedMods[sIdx[PLAYER_1]]..questionMark)
+					end
 				end
 			end
 		},
@@ -107,9 +110,11 @@ return Def.ActorFrame{
 				self:settext(SpeedMods[sIdx[PLAYER_2]]..questionMark)
 			end,
 			CurrentCourseChangedMessageCommand=function(self)
-				DoesCourseHasX()
-				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-					self:settext(SpeedMods[sIdx[PLAYER_2]]..questionMark)
+				if courseMode then
+					DoesCourseHasX()
+					if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+						self:settext(SpeedMods[sIdx[PLAYER_2]]..questionMark)
+					end
 				end
 			end
 		}

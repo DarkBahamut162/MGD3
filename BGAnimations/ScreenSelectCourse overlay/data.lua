@@ -8,6 +8,7 @@ local holds,holdsP1,holdsP2 = 0,0,0
 local rolls,rollsP1,rollsP2 = 0,0,0
 local lifts,liftsP1,liftsP2 = 0,0,0
 local mines,minesP1,minesP2 = 0,0,0
+local courseMode = GAMESTATE:IsCourseMode()
 
 return Def.ActorFrame{
 	Def.ActorFrame{
@@ -194,6 +195,6 @@ return Def.ActorFrame{
 				end
 			end
 		},
-		CurrentCourseChangedMessageCommand=function(self) self:queuecommand("Set") end
+		CurrentCourseChangedMessageCommand=function(self) if courseMode then self:queuecommand("Set") end end
 	}
 }

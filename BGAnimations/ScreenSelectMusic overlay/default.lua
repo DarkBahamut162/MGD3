@@ -1,5 +1,6 @@
 local file1 = "selmnormal song.png"
 local file2 = "selmnormal folder.png"
+local courseMode = GAMESTATE:IsCourseMode()
 
 if IsUsingWideScreen() == true then
 	file1 = "selmwide song.png"
@@ -37,6 +38,6 @@ return Def.ActorFrame{
 				c.BG2:diffusealpha(1)
 			end
 		end,
-		CurrentSongChangedMessageCommand=function(self) self:playcommand("Set") end
+		CurrentSongChangedMessageCommand=function(self) if not courseMode then self:playcommand("Set") end end
 	}
 }

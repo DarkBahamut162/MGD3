@@ -1,8 +1,9 @@
+local courseMode = GAMESTATE:IsCourseMode()
 local af = Def.ActorFrame{
 	PlayerJoinedMessageCommand=function(self, params) self:queuecommand("Init") end,
 	PlayerUnjoinedMessageCommand=function(self, params) self:queuecommand("Init") end,
-	CurrentSongChangedMessageCommand=function(self) self:playcommand("Set") end,
-	CurrentCourseChangedMessageCommand=function(self) self:playcommand("Set") end
+	CurrentSongChangedMessageCommand=function(self) if not courseMode then self:playcommand("Set") end end,
+	CurrentCourseChangedMessageCommand=function(self) if courseMode then self:playcommand("Set") end end
 }
 
 for player in ivalues({PLAYER_1, PLAYER_2}) do
@@ -18,8 +19,8 @@ for player in ivalues({PLAYER_1, PLAYER_2}) do
 		end,
 		PlayerJoinedMessageCommand=function(self, params) self:queuecommand("Init") end,
 		PlayerUnjoinedMessageCommand=function(self, params) self:queuecommand("Init") end,
-		["CurrentSteps"..ToEnumShortString(player).."ChangedMessageCommand"]=function(self) self:playcommand("Set") end,
-		["CurrentTrail"..ToEnumShortString(player).."ChangedMessageCommand"]=function(self) self:playcommand("Set") end,
+		["CurrentSteps"..ToEnumShortString(player).."ChangedMessageCommand"]=function(self) if not courseMode then self:playcommand("Set") end end,
+		["CurrentTrail"..ToEnumShortString(player).."ChangedMessageCommand"]=function(self) if courseMode then self:playcommand("Set") end end,
 		SetMessageCommand=function(self)
 			self:settext("")
 			local song = (GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentCourse()) or GAMESTATE:GetCurrentSong()
@@ -51,8 +52,8 @@ for player in ivalues({PLAYER_1, PLAYER_2}) do
 		end,
 		PlayerJoinedMessageCommand=function(self, params) self:queuecommand("Init") end,
 		PlayerUnjoinedMessageCommand=function(self, params) self:queuecommand("Init") end,
-		["CurrentSteps"..ToEnumShortString(player).."ChangedMessageCommand"]=function(self) self:playcommand("Set") end,
-		["CurrentTrail"..ToEnumShortString(player).."ChangedMessageCommand"]=function(self) self:playcommand("Set") end,
+		["CurrentSteps"..ToEnumShortString(player).."ChangedMessageCommand"]=function(self) if not courseMode then self:playcommand("Set") end end,
+		["CurrentTrail"..ToEnumShortString(player).."ChangedMessageCommand"]=function(self) if courseMode then self:playcommand("Set") end end,
 		SetMessageCommand=function(self)
 			self:settext("")
 			local song = (GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentCourse()) or GAMESTATE:GetCurrentSong()

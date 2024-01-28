@@ -1,21 +1,23 @@
+local courseMode = GAMESTATE:IsCourseMode()
+
 return Def.ActorFrame{
 	Def.StepsDisplayList{
 		Name="StepsDisplayListRow",
 		CurrentSongChangedMessageCommand=function(self)
 			self:stoptweening()
-			if not GAMESTATE:IsCourseMode() then if GAMESTATE:GetCurrentSong() then self:visible(true) else self:visible(false) end end
+			if not courseMode then if GAMESTATE:GetCurrentSong() then self:visible(true) else self:visible(false) end end
 		end,
 		CurrentCourseChangedMessageCommand=function(self)
 			self:stoptweening()
-			if GAMESTATE:IsCourseMode() then if GAMESTATE:GetCurrentCourse() then self:visible(true) else self:visible(false) end end
+			if courseMode then if GAMESTATE:GetCurrentCourse() then self:visible(true) else self:visible(false) end end
 		end,
 		CursorP1 = Def.ActorFrame{
 			InitCommand=function(self) self:x(0):player(PLAYER_1) end,
 			PlayerJoinedMessageCommand=function(self, params) if params.Player == PLAYER_1 then self:visible(true) end end,
 			PlayerUnjoinedMessageCommand=function(self, params) if params.Player == PLAYER_1 then self:visible(false) end end,
 			LoadActor(THEME:GetPathG("","CursorP1"))..{
-				CurrentStepsP1ChangedMessageCommand=function(self) self:playcommand("PositionCheck") end,
-				CurrentStepsP2ChangedMessageCommand=function(self) self:playcommand("PositionCheck") end,
+				CurrentStepsP1ChangedMessageCommand=function(self) if not courseMode then self:playcommand("PositionCheck") end end,
+				CurrentStepsP2ChangedMessageCommand=function(self) if not courseMode then self:playcommand("PositionCheck") end end,
 				PositionCheckCommand=function(self)
 					self:stoptweening()
 					if getenv("wheelstop") == 1 then
@@ -48,8 +50,8 @@ return Def.ActorFrame{
 			PlayerUnjoinedMessageCommand=function(self, params) if params.Player == PLAYER_2 then self:visible(false) end end,
 			LoadActor(THEME:GetPathG("","CursorP1"))..{
 				InitCommand=function(self) self:zoomx(-1) end,
-				CurrentStepsP1ChangedMessageCommand=function(self) self:playcommand("PositionCheck") end,
-				CurrentStepsP2ChangedMessageCommand=function(self) self:playcommand("PositionCheck") end,
+				CurrentStepsP1ChangedMessageCommand=function(self) if not courseMode then self:playcommand("PositionCheck") end end,
+				CurrentStepsP2ChangedMessageCommand=function(self) if not courseMode then self:playcommand("PositionCheck") end end,
 				PositionCheckCommand=function(self)
 					self:stoptweening()
 					if getenv("wheelstop") == 1 then

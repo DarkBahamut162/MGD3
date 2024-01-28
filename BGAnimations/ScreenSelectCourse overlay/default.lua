@@ -1,5 +1,6 @@
 local file1 = "selmnormal course.png"
 local file2 = "../ScreenSelectMusic overlay/selmnormal folder.png"
+local courseMode = GAMESTATE:IsCourseMode()
 
 if IsUsingWideScreen() == true then
 	file1 = "selmwide course.png"
@@ -40,6 +41,6 @@ return Def.ActorFrame{
 				cc.BG2:diffusealpha(1)
 			end
 		end,
-		CurrentCourseChangedMessageCommand=function(self) self:queuecommand("SetBG") end
+		CurrentCourseChangedMessageCommand=function(self) if courseMode then self:queuecommand("SetBG") end end
 	}
 }

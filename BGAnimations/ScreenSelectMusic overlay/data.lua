@@ -1,5 +1,6 @@
 local mPlayer = GAMESTATE:GetMasterPlayerNumber()
 local diff = ""
+local courseMode = GAMESTATE:IsCourseMode()
 
 if ProductFamily() == "StepMania" then
 	diff = "diff 1x6"
@@ -24,8 +25,8 @@ local function DifficultyIcons(pn)
 			self:player( pn )
 			self:SetPlayer( pn )
 		end,
-		CurrentStepsP1ChangedMessageCommand=function(self) set(self, PLAYER_1) end,
-		CurrentStepsP2ChangedMessageCommand=function(self) set(self, PLAYER_2) end
+		CurrentStepsP1ChangedMessageCommand=function(self) if not courseMode then set(self, PLAYER_1) end end,
+		CurrentStepsP2ChangedMessageCommand=function(self) if not courseMode then set(self, PLAYER_2) end end
 	}
 	return t
 end
@@ -468,8 +469,8 @@ return Def.ActorFrame{
 				end
 			end
 		},
-		CurrentSongChangedMessageCommand=function(self) self:playcommand("Set") end,
-		CurrentStepsP1ChangedMessageCommand=function(self) self:playcommand("Set") end,
-		CurrentStepsP2ChangedMessageCommand=function(self) self:playcommand("Set") end
+		CurrentSongChangedMessageCommand=function(self) if not courseMode then self:playcommand("Set") end end,
+		CurrentStepsP1ChangedMessageCommand=function(self) if not courseMode then self:playcommand("Set") end end,
+		CurrentStepsP2ChangedMessageCommand=function(self) if not courseMode then self:playcommand("Set") end end
 	}
 }

@@ -4,7 +4,7 @@ local TNSFrames = {
 	HoldNoteScore_LetGo = 1
 }
 
-local reverse = GAMESTATE:GetIsFieldReversed(player)
+local reverse = GAMESTATE:GetPlayerState(player):GetCurrentPlayerOptions():Reverse() ~= 0
 local yPos = reverse and THEME:GetMetric('Player', 'HoldJudgmentYReverse') or THEME:GetMetric('Player', 'HoldJudgmentYStandard')
 local HoldJudgments = Def.ActorFrame { InitCommand = function(self) self:y(yPos) end }
 

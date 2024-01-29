@@ -2,7 +2,7 @@ local mPlayer = GAMESTATE:GetMasterPlayerNumber()
 local diff = ""
 local courseMode = GAMESTATE:IsCourseMode()
 
-if ProductFamily() == "StepMania" then
+if ProductFamily() == "StepMania" or ProductFamily() == "ITGmania" then
 	diff = "diff 1x6"
 else
 	diff = "diff 1x15"

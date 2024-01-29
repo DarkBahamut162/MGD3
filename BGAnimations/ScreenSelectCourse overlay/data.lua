@@ -146,7 +146,7 @@ return Def.ActorFrame{
 			SetCommand=function(self)
 				local name = ""
 				if trail then
-					name = steps
+					if steps < 0 then name = "?" else name = steps end
 				end
 				self:settext(name)
 			end
@@ -156,7 +156,7 @@ return Def.ActorFrame{
 			SetCommand=function(self)
 				local name = ""
 				if trail then
-					name = jumps
+					if jumps < 0 then name = "?" else name = jumps end
 				end
 				self:settext(name)
 			end
@@ -166,7 +166,7 @@ return Def.ActorFrame{
 			SetCommand=function(self)
 				local name = ""
 				if trail then
-					name = hands
+					if hands < 0 then name = "?" else name = hands end
 				end
 				self:settext(name)
 			end

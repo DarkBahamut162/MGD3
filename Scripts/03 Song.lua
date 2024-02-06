@@ -122,10 +122,6 @@ function CalcDifficulty(StepsOrTrail)
 			jumpCounter = StepsOrTrail:GetRadarValues(GAMESTATE:GetMasterPlayerNumber()):GetValue('RadarCategory_Jumps')
 			handCounter = StepsOrTrail:GetRadarValues(GAMESTATE:GetMasterPlayerNumber()):GetValue('RadarCategory_Hands') * 2
 			songInSeconds = GAMESTATE:GetCurrentSong():GetLastSecond() - GAMESTATE:GetCurrentSong():GetFirstSecond()
-
-			local mods = GAMESTATE:GetSongOptionsObject("ModsLevel_Song")
-			local rate = mods:MusicRate()
-			songInSeconds = songInSeconds / rate
 		else
 			stepCounter = StepsOrTrail:GetRadarValues(GAMESTATE:GetMasterPlayerNumber()):GetValue('RadarCategory_TapsAndHolds')
 			jumpCounter = StepsOrTrail:GetRadarValues(GAMESTATE:GetMasterPlayerNumber()):GetValue('RadarCategory_Jumps')
@@ -135,7 +131,10 @@ function CalcDifficulty(StepsOrTrail)
 			end
 		end
 
-		return math.round( ( (stepCounter + jumpCounter + handCounter) / songInSeconds ) * 20 )
+		local sum = ( (stepCounter + jumpCounter + handCounter) / songInSeconds ) * 20
+
+		if sum < 0 then return "???" else return math.round(sum) end
 	end
-	return 0
+
+	return "???"
 end

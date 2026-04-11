@@ -1,10 +1,10 @@
 local SpeedMods = {"0.5X", "1X", "1.5X", "2X", "2.5X", "3X", "3.5X", "4X", "4.5X", "5X", "5.5X", "6X"}
-local sIdx = {PLAYER_1=2,PLAYER_2=2}
+local sIdx = {[PLAYER_1]=2,[PLAYER_2]=2}
 local sMax = #SpeedMods
 local invert = ThemePrefs.Get("InvertAccel") and -1 or 1
 
 return Def.ActorFrame{
-	OnCommand=function()
+	InitCommand=function()
 		for pn in ivalues(GAMESTATE:GetEnabledPlayers()) do
 			if GAMESTATE:GetPlayerState(pn):GetPlayerOptions("ModsLevel_Preferred"):ScrollSpeed() then
 				sIdx[pn] = GAMESTATE:GetPlayerState(pn):GetPlayerOptions("ModsLevel_Preferred"):ScrollSpeed() * 2
@@ -55,9 +55,9 @@ return Def.ActorFrame{
 		LoadFont("OptionIcon")..{
 			OnCommand=function(self)
 				if GAMESTATE:GetNumPlayersEnabled() == 1 then
-					self:x(SCREEN_CENTER_X+100)
+					self:x(SCREEN_CENTER_X+100*WideScreenDiff())
 				else
-					self:x(SCREEN_CENTER_X+50)
+					self:x(SCREEN_CENTER_X+50*WideScreenDiff())
 				end
 				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
 					self:y(SCREEN_BOTTOM-50):settext(string.upper(SpeedMods[sIdx[PLAYER_1]])):diffuse(color('#BEC1C6')):zoom(0.76)
@@ -70,9 +70,9 @@ return Def.ActorFrame{
 		LoadFont("OptionIcon")..{
 			OnCommand=function(self)
 				if GAMESTATE:GetNumPlayersEnabled() == 1 then
-					self:x(SCREEN_CENTER_X+100)
+					self:x(SCREEN_CENTER_X+100*WideScreenDiff())
 				else
-					self:x(SCREEN_CENTER_X+150)
+					self:x(SCREEN_CENTER_X+150*WideScreenDiff())
 				end
 				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
 					self:y(SCREEN_BOTTOM-50):settext(string.upper(SpeedMods[sIdx[PLAYER_2]])):diffuse(color('#BEC1C6')):zoom(0.76)

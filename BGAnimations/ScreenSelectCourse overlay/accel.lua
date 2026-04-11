@@ -75,9 +75,9 @@ return Def.ActorFrame{
 		LoadFont("OptionIcon")..{
 			OnCommand=function(self)
 				if GAMESTATE:GetNumPlayersEnabled() == 1 then
-					self:x(SCREEN_CENTER_X+100)
+					self:x(SCREEN_CENTER_X+100*WideScreenDiff())
 				else
-					self:x(SCREEN_CENTER_X+50)
+					self:x(SCREEN_CENTER_X+50*WideScreenDiff())
 				end
 				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
 					self:y(SCREEN_BOTTOM-50):settext(SpeedMods[sIdx[PLAYER_1]]):diffuse(color('#BEC1C6')):zoom(0.76)
@@ -98,9 +98,9 @@ return Def.ActorFrame{
 		LoadFont("OptionIcon")..{
 			OnCommand=function(self)
 				if GAMESTATE:GetNumPlayersEnabled() == 1 then
-					self:x(SCREEN_CENTER_X+100)
+					self:x(SCREEN_CENTER_X+100*WideScreenDiff())
 				else
-					self:x(SCREEN_CENTER_X+150)
+					self:x(SCREEN_CENTER_X+150*WideScreenDiff())
 				end
 				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
 					self:y(SCREEN_BOTTOM-50):settext(SpeedMods[sIdx[PLAYER_2]]):diffuse(color('#BEC1C6')):zoom(0.76)

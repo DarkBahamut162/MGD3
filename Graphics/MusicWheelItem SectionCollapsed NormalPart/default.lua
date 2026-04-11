@@ -12,7 +12,7 @@ return Def.ActorFrame{
 			else
 				self:Load(THEME:GetPathG("Common fallback","group"))
 			end
-			self:setsize(170,128)
+			self:setsize(170*WideScreenDiff(),128*WideScreenDiff())
 		end
 	}
 }

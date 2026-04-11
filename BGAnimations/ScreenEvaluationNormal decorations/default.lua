@@ -49,13 +49,13 @@ t[#t+1] = Def.ActorFrame{
 					else
 						self:Load(THEME:GetPathG("Common fallback", "background"))
 				end
-				self:setsize(200,150)
+				self:setsize(200*(SCREEN_WIDTH/640),150*(SCREEN_WIDTH/640))
 			end
 		end,
-		OnCommand=function(self) self:x(SCREEN_CENTER_X-160):y(SCREEN_CENTER_Y+8) end
+		OnCommand=function(self) self:x(SCREEN_CENTER_X-160*(SCREEN_WIDTH/640)):y(SCREEN_CENTER_Y+8*(SCREEN_WIDTH/640)) end
 	},
 	LoadActor("rankbg")..{
-		InitCommand=function(self) self:Center() end
+		InitCommand=function(self) self:Center():zoom(SCREEN_WIDTH/640) end
 	},
 	LoadActor("left")..{
 		InitCommand=function(self) self:x(SCREEN_LEFT+64):CenterY() end
@@ -82,15 +82,15 @@ for player in ivalues(GAMESTATE:GetEnabledPlayers()) do
 					local TotalStep=STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W1") + STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W2") + STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W3") + STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W4")
 					self:settext(TotalStep)
 					self:horizalign(right)
-					self:maxwidth(230)
-					self:zoom(0.7)
-					self:zoomy(#GAMESTATE:GetHumanPlayers()==2 and 0.35 or 0.7)
+					self:maxwidth(230*(SCREEN_WIDTH/640))
+					self:zoom(0.7*(SCREEN_WIDTH/640))
+					self:zoomy((#GAMESTATE:GetHumanPlayers()==2 and 0.35 or 0.7)*(SCREEN_WIDTH/640))
 					if player == PLAYER_1 then
-						self:y(#GAMESTATE:GetHumanPlayers()==2 and SCREEN_CENTER_Y+11 or SCREEN_CENTER_Y+20)
-						self:x(SCREEN_CENTER_X+107)
+					self:y(SCREEN_CENTER_Y+(#GAMESTATE:GetHumanPlayers()==2 and 11 or 20)*(SCREEN_WIDTH/640))
+						self:x(SCREEN_CENTER_X+107*(SCREEN_WIDTH/640))
 					else
-						self:y(#GAMESTATE:GetHumanPlayers()==2 and SCREEN_CENTER_Y+29 or SCREEN_CENTER_Y+20)
-						self:x(SCREEN_CENTER_X+107)
+						self:y(SCREEN_CENTER_Y+(#GAMESTATE:GetHumanPlayers()==2 and 29 or 20)*(SCREEN_WIDTH/640))
+						self:x(SCREEN_CENTER_X+107*(SCREEN_WIDTH/640))
 					end
 				end
 			end
@@ -108,15 +108,15 @@ for player in ivalues(GAMESTATE:GetEnabledPlayers()) do
 					self:settext(GAMESTATE:GetCurrentSteps(player):GetRadarValues(player):GetValue('RadarCategory_TapsAndHolds'))
 				end
 				self:horizalign(left)
-				self:maxwidth(230)
-				self:zoom(0.7)
-				self:zoomy(#GAMESTATE:GetHumanPlayers()==2 and 0.35 or 0.7)
+				self:maxwidth(230*(SCREEN_WIDTH/640))
+				self:zoom(0.7*(SCREEN_WIDTH/640))
+				self:zoomy((#GAMESTATE:GetHumanPlayers()==2 and 0.35 or 0.7)*(SCREEN_WIDTH/640))
 				if player == PLAYER_1 then
-					self:y(#GAMESTATE:GetHumanPlayers()==2 and SCREEN_CENTER_Y+11 or SCREEN_CENTER_Y+20)
-					self:x(SCREEN_CENTER_X+138)
+					self:y(SCREEN_CENTER_Y+(#GAMESTATE:GetHumanPlayers()==2 and 11 or 20)*(SCREEN_WIDTH/640))
+					self:x(SCREEN_CENTER_X+138*(SCREEN_WIDTH/640))
 				else
-					self:y(#GAMESTATE:GetHumanPlayers()==2 and SCREEN_CENTER_Y+29 or SCREEN_CENTER_Y+20)
-					self:x(SCREEN_CENTER_X+138)
+					self:y(SCREEN_CENTER_Y+(#GAMESTATE:GetHumanPlayers()==2 and 29 or 20)*(SCREEN_WIDTH/640))
+					self:x(SCREEN_CENTER_X+138*(SCREEN_WIDTH/640))
 				end
 			end
 		}

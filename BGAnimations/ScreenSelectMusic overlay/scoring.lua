@@ -12,8 +12,8 @@ for player in ivalues({PLAYER_1, PLAYER_2}) do
 		Font="Combo numbers",
 		InitCommand=function(self)
 			self:visible( GAMESTATE:IsHumanPlayer(player) )
-				:zoom(0.38)
-				:x( (#GAMESTATE:GetHumanPlayers()==2 and (player==PLAYER_1 and -30 or 30)) or 0  )
+				:zoomx(0.38*WideScreenDiff()):zoomy(0.38)
+				:x( #GAMESTATE:GetHumanPlayers()==2 and (player==PLAYER_1 and -30 or 30)*WideScreenDiff() or 0  )
 				:y(-15)
 				:maxwidth((#GAMESTATE:GetHumanPlayers()==2 and 140) or 300)
 		end,
@@ -45,8 +45,8 @@ for player in ivalues({PLAYER_1, PLAYER_2}) do
 		Font="Combo numbers",
 		InitCommand=function(self)
 			self:visible( GAMESTATE:IsHumanPlayer(player) )
-				:zoom(0.38)
-				:x( (#GAMESTATE:GetHumanPlayers()==2 and (player==PLAYER_1 and -30 or 30)) or 0  )
+				:zoomx(0.38*WideScreenDiff()):zoomy(0.38)
+				:x( #GAMESTATE:GetHumanPlayers()==2 and (player==PLAYER_1 and -30 or 30)*WideScreenDiff() or 0  )
 				:y(13)
 				:maxwidth((#GAMESTATE:GetHumanPlayers()==2 and 140) or 300)
 		end,

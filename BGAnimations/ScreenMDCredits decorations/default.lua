@@ -15,6 +15,16 @@ return Def.ActorFrame{
 		OnCommand=function(self) self:FullScreen():diffusecolor(Color.Black):diffusealpha(0):sleep(50):linear(2):diffusealpha(1) end
 	},
 	LoadActor("solong")..{
-		OnCommand=function(self) self:Center():diffusealpha(0):sleep(52):linear(2.5):diffusealpha(1):sleep(2):linear(2.5):diffusealpha(0) end
+		InitCommand=function(self) self:Center():diffusealpha(0) end,
+		OnCommand=function(self)
+			local width = self:GetWidth()
+			if width > SCREEN_WIDTH then
+				local height = self:GetHeight()
+				local diff = SCREEN_WIDTH/width
+				self:zoom(diff)
+				self:addy(height*(1-diff)/2)
+			end
+			self:sleep(52):linear(2.5):diffusealpha(1):sleep(2):linear(2.5):diffusealpha(0)
+		end
 	}
 }

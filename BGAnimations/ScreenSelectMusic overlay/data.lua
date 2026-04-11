@@ -38,19 +38,19 @@ return Def.ActorFrame{
 		end,
 		LoadFont("MusicList titles")..{
 			Name="Title",
-			InitCommand=function(self) self:horizalign(left):zoom(0.82):x(-134):y(2) end
+			InitCommand=function(self) self:horizalign(left):x(-134*WideScreenDiff()):y(2):zoomx(0.82*WideScreenDiff()):zoomy(0.82) end
 		},
 		LoadFont("MusicList titles")..{
 			Name="Artist",
-			InitCommand=function(self) self:horizalign(left):zoom(0.82):x(-134):y(24) end
+			InitCommand=function(self) self:horizalign(left):x(-134*WideScreenDiff()):y(24):zoomx(0.82*WideScreenDiff()):zoomy(0.82) end
 		},
 		LoadFont("ScreenSelectMusic total time")..{
 			Name="Time",
-			InitCommand=function(self) self:horizalign(center):y(88):x(69) end
+			InitCommand=function(self) self:horizalign(center):y(88):x(69*WideScreenDiff()):zoomx(WideScreenDiff()) end
 		},
 		LoadFont("ScreenSelectMusic total time")..{
 			Name="TrueTime",
-			InitCommand=function(self) self:horizalign(center):y(88):x(69) end
+			InitCommand=function(self) self:horizalign(center):y(88):x(69*WideScreenDiff()):zoomx(WideScreenDiff()) end
 		},
 		SetCommand=function(self)
 			local song = GAMESTATE:GetCurrentSong()
@@ -100,9 +100,7 @@ return Def.ActorFrame{
 		Def.BPMDisplay{
 			File=THEME:GetPathF("BPM", "Display"),
 			Name="BPMDisplay",
-			InitCommand=function(self)
-				self:x(5):y(133):horizalign(left):zoom(0.62):maxwidth(210)
-			end,
+			InitCommand=function(self) self:x(5*WideScreenDiff()):y(133):horizalign(left):zoom(0.62):zoomx(0.62*WideScreenDiff()):maxwidth(210) end,
 			SetCommand=function(self)
 				self:SetFromGameState()
 				local song = GAMESTATE:GetCurrentSong()
@@ -188,10 +186,11 @@ return Def.ActorFrame{
 		},
 		DifficultyIcons(PLAYER_1)..{
 			BeginCommand=function(self)
+				self:y(-52):zoomx(0.8*WideScreenDiff()):zoomy(0.8)
 				if not GAMESTATE:IsHumanPlayer(PLAYER_2) then
-					self:x(76):y(-52):zoom(0.8)
+					self:x(76*WideScreenDiff())
 				else
-					self:x(76-32):y(-52):zoom(0.8):setsize(90,55)
+					self:x(44*WideScreenDiff()):setsize(90,55)
 				end
 			end,
 			SetCommand=function(self)
@@ -203,10 +202,11 @@ return Def.ActorFrame{
 		},
 		DifficultyIcons(PLAYER_2)..{
 			BeginCommand=function(self)
+				self:y(-52):zoomx(0.8*WideScreenDiff()):zoomy(0.8)
 				if not GAMESTATE:IsHumanPlayer(PLAYER_1) then
-					self:x(76):y(-52):zoom(0.8)
+					self:x(76*WideScreenDiff())
 				else
-					self:x(76+32):y(-52):zoom(0.8):setsize(90,55)
+					self:x(108*WideScreenDiff()):setsize(90,55)
 				end
 			end,
 			SetCommand=function(self)
@@ -217,7 +217,7 @@ return Def.ActorFrame{
 			end
 		},
 		LoadFont("Panedisplay Blurred")..{
-			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(69):x(-132):maxwidth(160):diffusealpha(0.6):zoomx(0.37) end,
+			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(69):x(-132*WideScreenDiff()):maxwidth(160):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()) end,
 			SetCommand=function(self)
 				local name = "STEPS"
 				steps = GAMESTATE:GetCurrentSteps(mPlayer)
@@ -244,19 +244,19 @@ return Def.ActorFrame{
 			end
 		},
 		LoadFont("Panedisplay Blurred")..{
-			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(90):x(-132):maxwidth(160):diffusealpha(0.6) end,
+			InitCommand=function(self) self:horizalign(left):y(90):x(-132*WideScreenDiff()):maxwidth(160):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("JUMPS")
 			end
 		},
 		LoadFont("Panedisplay Blurred")..{
-			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(111):x(-132):maxwidth(160):diffusealpha(0.6) end,
+			InitCommand=function(self) self:horizalign(left):y(111):x(-132*WideScreenDiff()):maxwidth(160):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("HANDS")
 			end
 		},
 		LoadFont("Panedisplay Blurred")..{
-			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(132):x(-132):maxwidth(160):diffusealpha(0.6) end,
+			InitCommand=function(self) self:horizalign(left):y(132):x(-132*WideScreenDiff()):maxwidth(160):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				local name = "HOLDS"
 				steps = GAMESTATE:GetCurrentSteps(mPlayer)
@@ -281,21 +281,21 @@ return Def.ActorFrame{
 			end
 		},
 		LoadFont("Panedisplay Blurred")..{
-			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(70):x(10):diffusealpha(0.6):zoomx(0.33) end,
+			InitCommand=function(self) self:horizalign(left):y(70):x(10*WideScreenDiff()):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("S O N G   L E N G T H"):maxwidth(360)
 				self:effectclock('timer'):diffuseshift():effectcolor1(color("#FFFFFFFF")):effectcolor2(color("#00000000")):effectperiod(4)
 			end
 		},
 		LoadFont("Panedisplay Blurred")..{
-			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(70):x(10):diffusealpha(0.6):zoomx(0.33) end,
+			InitCommand=function(self) self:horizalign(left):y(70):x(10*WideScreenDiff()):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("T R U E   L E N G T H"):maxwidth(360)
 				self:effectclock('timer'):diffuseshift():effectcolor1(color("#00000000")):effectcolor2(color("#FFFFFFFF")):effectperiod(4)
 			end
 		},
 		LoadFont("Panedisplay Blurred")..{
-			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(115):x(10):diffusealpha(0.6):zoomx(0.34) end,
+			InitCommand=function(self) self:horizalign(left):y(115):x(10*WideScreenDiff()):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("B P M")
 				local song = GAMESTATE:GetCurrentSong()
@@ -308,7 +308,7 @@ return Def.ActorFrame{
 			end
 		},
 		LoadFont("Panedisplay Text")..{
-			InitCommand=function(self) self:zoom(0.36):horizalign(right):y(70):x(-11):maxwidth(170) end,
+			InitCommand=function(self) self:horizalign(right):y(70):x(-11*WideScreenDiff()):maxwidth(170):zoomx(0.36*WideScreenDiff()):zoomy(0.36) end,
 			SetCommand=function(self)
 				local name = ""
 				steps = GAMESTATE:GetCurrentSteps(mPlayer)
@@ -333,7 +333,7 @@ return Def.ActorFrame{
 			end
 		},
 		LoadFont("Panedisplay Text")..{
-			InitCommand=function(self) self:zoom(0.36):horizalign(right):y(91):x(-11):maxwidth(170) end,
+			InitCommand=function(self) self:horizalign(right):y(91):x(-11*WideScreenDiff()):maxwidth(170):zoomx(0.36*WideScreenDiff()):zoomy(0.36) end,
 			SetCommand=function(self)
 				local name = ""
 				steps = GAMESTATE:GetCurrentSteps(mPlayer)
@@ -358,7 +358,7 @@ return Def.ActorFrame{
 			end
 		},
 		LoadFont("Panedisplay Text")..{
-			InitCommand=function(self) self:zoom(0.36):horizalign(right):y(112):x(-11):maxwidth(170) end,
+			InitCommand=function(self) self:horizalign(right):y(112):x(-11*WideScreenDiff()):maxwidth(170):zoomx(0.36*WideScreenDiff()):zoomy(0.36) end,
 			SetCommand=function(self)
 				local name = ""
 				steps = GAMESTATE:GetCurrentSteps(mPlayer)
@@ -383,7 +383,7 @@ return Def.ActorFrame{
 			end
 		},
 		LoadFont("Panedisplay Text")..{
-			InitCommand=function(self) self:zoom(0.36):horizalign(right):y(133):x(-11):maxwidth(170) end,
+			InitCommand=function(self) self:horizalign(right):y(133):x(-11*WideScreenDiff()):maxwidth(170):zoomx(0.36*WideScreenDiff()):zoomy(0.36) end,
 			SetCommand=function(self)
 				local name = ""
 				steps = GAMESTATE:GetCurrentSteps(mPlayer)
@@ -435,7 +435,7 @@ return Def.ActorFrame{
 		Def.Sprite{
 			Texture='../mine',
 			Frames = Sprite.LinearFrames( 8, 1 ),
-			InitCommand=function(self) self:effectclock('beat'):addx(180):addy(12):visible(false) end,
+			InitCommand=function(self) self:effectclock('beat'):addx(180*WideScreenDiff()):addy(12):visible(false):zoomx(WideScreenDiff()) end,
 			SetCommand=function(self)
 				local mPlayer = GAMESTATE:GetMasterPlayerNumber()
 				steps = GAMESTATE:GetCurrentSteps(mPlayer)

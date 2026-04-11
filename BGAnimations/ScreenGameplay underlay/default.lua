@@ -32,8 +32,7 @@ local centered = (GAMESTATE:GetNumPlayersEnabled() == 1) and true or false
 for player in ivalues(GAMESTATE:GetHumanPlayers()) do
 	t[#t+1] = LoadActor("playerfilter")..{
 		InitCommand=function(self)
-			self:x(GetPosition(player))
-			self:CenterY()
+			self:x(GetPosition(player)):y(SCREEN_CENTER_Y):zoomx(WideScreenDiff())
 		end,
 		HealthStateChangedMessageCommand=function(self, param)
 			if param.HealthState == Health.Dead then --If player dies

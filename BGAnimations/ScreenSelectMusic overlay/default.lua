@@ -1,33 +1,47 @@
-local file1 = "selmnormal song.png"
-local file2 = "selmnormal folder.png"
 local courseMode = GAMESTATE:IsCourseMode()
-
-if IsUsingWideScreen() == true then
-	file1 = "selmwide song.png"
-	file2 = "selmwide folder.png"
-end
+local sideWidth = 208*WideScreenDiff()
+local bgWidth = (SCREEN_WIDTH-sideWidth)
 
 return Def.ActorFrame{
 	Def.ActorFrame{
 		InitCommand=function(self) c = self:GetChildren() end,
-		LoadActor(file1)..{
-			Name="BG1",
-			InitCommand=function(self) self:Center() end
+		LoadActor("side")..{
+			Name="Side",
+			InitCommand=function(self) self:halign(0):valign(0):zoomtowidth(sideWidth) end
 		},
-		LoadActor(file2)..{
+		LoadActor("background")..{
+			Name="Background",
+			InitCommand=function(self) self:x(sideWidth):halign(0):valign(0):zoomtowidth(SCREEN_WIDTH-sideWidth) end
+		},
+		LoadActor("border")..{
+			Name="Left",
+			InitCommand=function(self) self:x(sideWidth):halign(0):valign(0) end
+		},
+		LoadActor("border")..{
+			Name="right",
+			InitCommand=function(self) self:x(SCREEN_RIGHT):halign(0):valign(0):zoomx(-1) end
+		},
+		LoadActor("song")..{
+			Name="BG1",
+			InitCommand=function(self) self:x(sideWidth+bgWidth/2):zoomx(WideScreenDiff()):valign(0) end
+		},
+		LoadActor("folder")..{
 			Name="BG2",
-			InitCommand=function(self) self:Center() end
+			InitCommand=function(self) self:x(sideWidth+bgWidth/2):zoomx(WideScreenDiff()):valign(0) end
 		},
 		LoadActor("difflist")..{
-			InitCommand=function(self) self:Center():addx(40):addy(-140) end
+			InitCommand=function(self) self:Center():addx(40*WideScreenDiff()):addy(-140) end
 		},
 		LoadActor("scoring")..{
-			InitCommand=function(self) self:Center():addx(180):addy(-117) end
+			InitCommand=function(self) self:Center():addx(180*WideScreenDiff()):addy(-117) end
 		},
 		LoadActor("data")..{
-			InitCommand=function(self) self:Center():addx(106):addy(-12) end
+			InitCommand=function(self) self:Center():addx(106*WideScreenDiff()):addy(-12) end
 		},
 		LoadActor("accel"),
+		LoadFont("Panedisplay Blurred")..{
+			InitCommand=function(self) self:x(SCREEN_CENTER_X+100*WideScreenDiff()):y(SCREEN_BOTTOM-69):settext("ACCELERATION"):diffuse(color('#808080')):zoom(1/4) end,
+		},
 		SetCommand=function(self)
 			local song = GAMESTATE:GetCurrentSong()
 			if song then

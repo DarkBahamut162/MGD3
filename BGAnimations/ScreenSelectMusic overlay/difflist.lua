@@ -15,7 +15,8 @@ return Def.ActorFrame{
 			InitCommand=function(self) self:x(0):player(PLAYER_1) end,
 			PlayerJoinedMessageCommand=function(self, params) if params.Player == PLAYER_1 then self:visible(true) end end,
 			PlayerUnjoinedMessageCommand=function(self, params) if params.Player == PLAYER_1 then self:visible(false) end end,
-			LoadActor(THEME:GetPathG("","CursorP1"))..{
+			Def.Sprite {
+				Texture = THEME:GetPathG("","CursorP1"),
 				CurrentStepsP1ChangedMessageCommand=function(self) if not courseMode then self:playcommand("PositionCheck") end end,
 				CurrentStepsP2ChangedMessageCommand=function(self) if not courseMode then self:playcommand("PositionCheck") end end,
 				PositionCheckCommand=function(self)
@@ -48,7 +49,8 @@ return Def.ActorFrame{
 			InitCommand=function(self) self:x(52*WideScreenDiff()):player(PLAYER_2) end,
 			PlayerJoinedMessageCommand=function(self, params) if params.Player == PLAYER_2 then self:visible(true) end end,
 			PlayerUnjoinedMessageCommand=function(self, params) if params.Player == PLAYER_2 then self:visible(false) end end,
-			LoadActor(THEME:GetPathG("","CursorP1"))..{
+			Def.Sprite {
+				Texture = THEME:GetPathG("","CursorP1"),
 				InitCommand=function(self) self:zoomx(-1) end,
 				CurrentStepsP1ChangedMessageCommand=function(self) if not courseMode then self:playcommand("PositionCheck") end end,
 				CurrentStepsP2ChangedMessageCommand=function(self) if not courseMode then self:playcommand("PositionCheck") end end,

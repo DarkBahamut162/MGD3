@@ -1,6 +1,6 @@
 return Def.ActorFrame{
-	LoadActor("../Logo")..{
+	loadfile(THEME:GetPathB("","Logo"))()..{
 		OnCommand=function(self) self:Center() end
 	},
-	LoadActor("../Title_deco")
+	loadfile(THEME:GetPathB("","Title_deco"))()
 }

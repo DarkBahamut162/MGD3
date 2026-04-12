@@ -59,7 +59,8 @@ return Def.ActorFrame{
 				self:playcommand("Speed"):playcommand("Speed"..ToEnumShortString(params.PlayerNumber))
 			end
 		end,
-		LoadActor(THEME:GetPathS("ScreenSelectMusic","options"))..{
+		Def.Sound {
+			File = THEME:GetPathS("ScreenSelectMusic","options"),
 			OnCommand=function(self) self:stop() end,
 			SupportPan=true,
 			SpeedCommand=function(self)
@@ -72,7 +73,8 @@ return Def.ActorFrame{
 				if GAMESTATE:GetNumPlayersEnabled() == 2 then self:playforplayer(PLAYER_2) end
 			end
 		},
-		LoadFont("OptionIcon")..{
+		Def.BitmapText {
+			File = "OptionIcon",
 			OnCommand=function(self)
 				if GAMESTATE:GetNumPlayersEnabled() == 1 then
 					self:x(SCREEN_CENTER_X+100*WideScreenDiff())
@@ -95,7 +97,8 @@ return Def.ActorFrame{
 				end
 			end
 		},
-		LoadFont("OptionIcon")..{
+		Def.BitmapText {
+			File = "OptionIcon",
 			OnCommand=function(self)
 				if GAMESTATE:GetNumPlayersEnabled() == 1 then
 					self:x(SCREEN_CENTER_X+100*WideScreenDiff())

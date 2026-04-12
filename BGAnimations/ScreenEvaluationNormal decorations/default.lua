@@ -4,14 +4,17 @@ local SongTit = Song:GetDisplayMainTitle()
 
 if not ThemePrefs.Get("AltResult") then
 	t[#t+1] = Def.ActorFrame{
-		LoadActor("../ball3")..{
+		Def.Model{
+			Materials=THEME:GetPathB("","ball3"),
+			Meshes=THEME:GetPathB("","ball3"),
+			Bones=THEME:GetPathB("","ball3"),
 			InitCommand=function(self) self:Center():zoom(14):z(-100):spin():effectmagnitude(44,44,44):diffusealpha(0.5) end
 		}
 	}
 end
 
 t[#t+1] = Def.ActorFrame{
-	LoadActor("../_tiledbg"),
+	loadfile(THEME:GetPathB("","_tiledbg"))(),
 	Def.Sprite{
 		InitCommand=function(self)
 			if Song then
@@ -24,17 +27,20 @@ t[#t+1] = Def.ActorFrame{
 		end,
 		OnCommand=function(self) self:scale_or_crop_background():diffusealpha(0.2) end
 	},
-	LoadActor("../Shared_style")..{
+	loadfile(THEME:GetPathB("","Shared_style"))()..{
 		InitCommand=function(self) self:diffusealpha(0.15) end
 	}
 }
 
 if ThemePrefs.Get("AltResult") then
 	t[#t+1] = Def.ActorFrame{
-		LoadActor("../ball3")..{
+		Def.Model{
+			Materials=THEME:GetPathB("","ball3"),
+			Meshes=THEME:GetPathB("","ball3"),
+			Bones=THEME:GetPathB("","ball3"),
 			InitCommand=function(self) self:Center():zoom(14):z(-100):spin():effectmagnitude(44,44,44):diffusealpha(1) end
 		},
-		LoadActor("../Shared_style")..{
+		loadfile(THEME:GetPathB("","Shared_style"))()..{
 			InitCommand=function(self) self:z(-100):ztestmode("WriteOnFail"):diffusealpha(0.1) end
 		}
 	}
@@ -54,16 +60,20 @@ t[#t+1] = Def.ActorFrame{
 		end,
 		OnCommand=function(self) self:x(SCREEN_CENTER_X-160*(SCREEN_WIDTH/640)):y(SCREEN_CENTER_Y+8*(SCREEN_WIDTH/640)) end
 	},
-	LoadActor("rankbg")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenEvaluationNormal","decorations/rankbg"),
 		InitCommand=function(self) self:Center():zoom(SCREEN_WIDTH/640) end
 	},
-	LoadActor("left")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenEvaluationNormal","decorations/left"),
 		InitCommand=function(self) self:x(SCREEN_LEFT+64):CenterY() end
 	},
-	LoadActor("right")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenEvaluationNormal","decorations/right"),
 		InitCommand=function(self) self:x(SCREEN_RIGHT-64):CenterY() end
 	},
-	LoadFont("MusicList titles")..{
+	Def.BitmapText {
+		File = "MusicList titles",
 		Name="Title",
 		InitCommand=function(self) self:zoom(1):Center():queuecommand("Set"):addy(137):maxwidth(SCREEN_WIDTH) end,
 		SetCommand=function(self)
@@ -76,7 +86,8 @@ t[#t+1] = Def.ActorFrame{
 
 for player in ivalues(GAMESTATE:GetEnabledPlayers()) do
 	t[#t+1] = Def.ActorFrame{
-		LoadFont("Combo numbers")..{
+		Def.BitmapText {
+			File = "Combo numbers",
 			InitCommand=function(self)
 				if Song then
 					local TotalStep=STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W1") + STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W2") + STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W3") + STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W4")
@@ -95,7 +106,8 @@ for player in ivalues(GAMESTATE:GetEnabledPlayers()) do
 				end
 			end
 		},
-		LoadFont("Combo numbers")..{
+		Def.BitmapText {
+			File = "Combo numbers",
 			InitCommand=function(self)
 				if GAMESTATE:IsCourseMode() then
 					local trail = GAMESTATE:GetCurrentTrail(player)

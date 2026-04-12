@@ -30,7 +30,8 @@ local moved = (GAMESTATE:GetNumPlayersEnabled() == 1) and true or false
 local centered = (GAMESTATE:GetNumPlayersEnabled() == 1) and true or false
 
 for player in ivalues(GAMESTATE:GetHumanPlayers()) do
-	t[#t+1] = LoadActor("playerfilter")..{
+	t[#t+1] = Def.Sprite {
+		Texture = THEME:GetPathB("ScreenGameplay","underlay/playerfilter"),
 		InitCommand=function(self)
 			self:x(GetPosition(player)):y(SCREEN_CENTER_Y):zoomx(WideScreenDiff())
 		end,
@@ -65,7 +66,7 @@ for player in ivalues(GAMESTATE:GetHumanPlayers()) do
 		end
 
 		if isSurvival then
-			t[#t+1] = LoadActor("RemainingTime", player)..{
+			t[#t+1] = loadfile(THEME:GetPathB("ScreenGameplay","underlay/RemainingTime"))(player)..{
 				Condition=GAMESTATE:GetPlayMode() == "PlayMode_Oni"
 			}
 		end

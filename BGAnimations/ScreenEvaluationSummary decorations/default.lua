@@ -21,7 +21,10 @@ end
 
 if not ThemePrefs.Get("AltResult") then
 	t[#t+1] = Def.ActorFrame{
-		LoadActor("../ball3")..{
+		Def.Model{
+			Materials=THEME:GetPathB("","ball3"),
+			Meshes=THEME:GetPathB("","ball3"),
+			Bones=THEME:GetPathB("","ball3"),
 			InitCommand=function(self) self:Center():zoom(14):z(-100):spin():effectmagnitude(44,44,44):diffusealpha(0.5) end
 		}
 	}
@@ -46,7 +49,7 @@ t[#t+1] = Def.ActorFrame{
 }
 
 t[#t+1] = Def.ActorFrame{
-	LoadActor("../_tiledbg"),
+	loadfile(THEME:GetPathB("","_tiledbg"))(),
 	Def.Sprite{
 		InitCommand=function(self)
 			if Song then
@@ -63,17 +66,20 @@ t[#t+1] = Def.ActorFrame{
 			self:FullScreen()
 		end
 	},
-	LoadActor("../Shared_style")..{
+	loadfile(THEME:GetPathB("","Shared_style"))()..{
 		InitCommand=function(self) self:diffusealpha(0.15) end
 	}
 }
 
 if ThemePrefs.Get("AltResult") then
 	t[#t+1] = Def.ActorFrame{
-		LoadActor("../ball3")..{
+		Def.Model{
+			Materials=THEME:GetPathB("","ball3"),
+			Meshes=THEME:GetPathB("","ball3"),
+			Bones=THEME:GetPathB("","ball3"),
 			InitCommand=function(self) self:Center():zoom(14):z(-100):spin():effectmagnitude(44,44,44):diffusealpha(1) end
 		},
-		LoadActor("../Shared_style")..{
+		loadfile(THEME:GetPathB("","Shared_style"))()..{
 			InitCommand=function(self) self:z(-100):ztestmode("WriteOnFail"):diffusealpha(0.1) end
 		}
 	}
@@ -97,16 +103,20 @@ t[#t+1] = Def.ActorFrame{
 			self:setsize(200,150)
 		end
 	},
-	LoadActor("../ScreenEvaluationNormal decorations/rankbg")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenEvaluationNormal","decorations/rankbg"),
 		InitCommand=function(self) self:Center() end
 	},
-	LoadActor("../ScreenEvaluationNormal decorations/left")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenEvaluationNormal","decorations/left"),
 		InitCommand=function(self) self:x(SCREEN_LEFT+64):CenterY() end
 	},
-	LoadActor("../ScreenEvaluationNormal decorations/right")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenEvaluationNormal","decorations/right"),
 		InitCommand=function(self) self:x(SCREEN_RIGHT-64):CenterY() end
 	},
-	LoadFont("MusicList titles")..{
+	Def.BitmapText {
+		File = "MusicList titles",
 		Name="SongTit",
 		InitCommand=function(self) self:zoom(1):Center():queuecommand("Set"):addy(137) end,
 		SetCommand=function(self)
@@ -118,7 +128,8 @@ t[#t+1] = Def.ActorFrame{
 			self:settext(tSongName[sIndex])
 		end
 	},
-	LoadFont("MusicList titles")..{
+	Def.BitmapText {
+		File = "MusicList titles",
 		Name="Title",
 		InitCommand=function(self) self:zoom(1):Center():queuecommand("Set"):addy(-117):maxwidth(SCREEN_WIDTH) end,
 		SetCommand=function(self)
@@ -131,7 +142,8 @@ t[#t+1] = Def.ActorFrame{
 
 for player in ivalues(GAMESTATE:GetEnabledPlayers()) do
 	t[#t+1] = Def.ActorFrame{
-		LoadFont("Combo numbers")..{
+		Def.BitmapText {
+			File = "Combo numbers",
 			InitCommand=function(self)
 				if Song then
 					self:settext(STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W1") + STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W2") + STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W3") + STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W4"))
@@ -152,7 +164,8 @@ for player in ivalues(GAMESTATE:GetEnabledPlayers()) do
 				self:settext(STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W1") + STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W2") + STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W3") + STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W4"))
 			end
 		},
-		LoadFont("Combo numbers")..{
+		Def.BitmapText {
+			File = "Combo numbers",
 			InitCommand=function(self)
 				if Song then
 					self:settext(STATSMAN:GetPlayedStageStats(sIndex):GetPlayerStageStats(player):GetRadarPossible():GetValue('RadarCategory_TapsAndHolds'))

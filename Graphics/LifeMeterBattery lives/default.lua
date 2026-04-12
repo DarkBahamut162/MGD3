@@ -4,7 +4,8 @@ local moved = (GAMESTATE:GetNumPlayersEnabled() == 1) and true or false
 local centered = (GAMESTATE:GetNumPlayersEnabled() == 1) and true or false
 
 return Def.ActorFrame{
-	LoadFont("Combo numbers")..{
+	Def.BitmapText {
+		File = "Combo numbers",
 		BeginCommand=function(self)
 			local screen = SCREENMAN:GetTopScreen()
 			local glifemeter = screen:GetLifeMeter(player)

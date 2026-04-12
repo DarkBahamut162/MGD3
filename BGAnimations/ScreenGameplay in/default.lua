@@ -9,7 +9,8 @@ if GAMESTATE:IsCourseMode() then
 			end,
 			OnCommand=function(self) self:diffusecolor(1,0.3,0.3,1):diffusealpha(1):sleep(0.2):decelerate(0.88):diffusealpha(0) end
 		},
-		LoadActor("../exborder")..{
+		Def.Sprite {
+			Texture = THEME:GetPathB("","exborder"),
 			BeginCommand=function(self) self:Center() end,
 			OnCommand=function(self) self:diffusealpha(0.8):zoomy(1):accelerate(0.8):zoomy(2.4) end
 		}
@@ -54,7 +55,8 @@ else
 	end
 	if IsSongDash(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("../dash-bg")..{
+			Def.Sprite {
+				Texture = THEME:GetPathB("","dash-bg"),
 				BeginCommand=function(self) self:scale_or_crop_background() end,
 				OnCommand=function(self) self:diffusealpha(1):sleep(0.2):decelerate(0.88):diffusealpha(0) end
 			}
@@ -79,7 +81,8 @@ else
 	end
 	if IsSongBoss(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("../border")..{
+			Def.Sprite {
+				Texture = THEME:GetPathB("","border"),
 				BeginCommand=function(self) self:Center() end,
 				OnCommand=function(self) self:diffusealpha(0.8):zoomy(1):accelerate(0.8):zoomy(2.4) end
 			}
@@ -87,7 +90,8 @@ else
 	end
 	if IsSongEx(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("../exborder")..{
+			Def.Sprite {
+				Texture = THEME:GetPathB("","exborder"),
 				BeginCommand=function(self) self:Center() end,
 				OnCommand=function(self) self:diffusealpha(0.8):zoomy(1):accelerate(0.8):zoomy(2.4) end
 			}
@@ -95,7 +99,8 @@ else
 	end
 	if IsSongLife(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("../lifeborder")..{
+			Def.Sprite {
+				Texture = THEME:GetPathB("","lifeborder"),
 				BeginCommand=function(self) self:Center() end,
 				OnCommand=function(self) self:diffusealpha(0.8):zoomy(1):accelerate(0.8):zoomy(2.4) end
 			}

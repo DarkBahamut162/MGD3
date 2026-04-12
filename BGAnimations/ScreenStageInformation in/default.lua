@@ -23,51 +23,78 @@ local t = Def.ActorFrame{}
 
 if GAMESTATE:IsCourseMode() then
 	t[#t+1] = Def.ActorFrame{
-		LoadActor("boss")..{ OnCommand=function(self) self:play() end },
-		LoadActor(THEME:GetPathB("","ScreenStageInformation/course"))
+		Def.Sound {
+			File = THEME:GetPathB("ScreenStageInformation","in/boss.ogg"),
+			OnCommand=function(self) self:play() end
+		},
+		loadfile(THEME:GetPathB("","ScreenStageInformation/course"))()
 	}
 else
 	local Song = GAMESTATE:GetCurrentSong()
 	local SongTit = Song:GetDisplayMainTitle()
 	if SongTit == "I'm an Idiot" then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("windeu")..{ OnCommand=function(self) self:play() end },
-			LoadActor(THEME:GetPathB("","ScreenStageInformation/windeu"))
+			Def.Sound {
+				File = THEME:GetPathB("ScreenStageInformation","in/windeu.ogg"),
+				OnCommand=function(self) self:play() end
+			},
+			loadfile(THEME:GetPathB("","ScreenStageInformation/windeu"))()
 		}
 	elseif SongTit == "What Do You Really Want" or SongTit == "What Do You Really Want EX" then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("crash")..{ OnCommand=function(self) self:play() end },
-			LoadActor(THEME:GetPathB("","ScreenStageInformation/crash"))
+			Def.Sound {
+				File = THEME:GetPathB("ScreenStageInformation","in/crash.ogg"),
+				OnCommand=function(self) self:play() end
+			},
+			loadfile(THEME:GetPathB("","ScreenStageInformation/crash"))()
 		}
 	elseif IsSongBoss(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("boss")..{ OnCommand=function(self) self:play() end },
-			LoadActor(THEME:GetPathB("","ScreenStageInformation/boss"))
+			Def.Sound {
+				File = THEME:GetPathB("ScreenStageInformation","in/boss.ogg"),
+				OnCommand=function(self) self:play() end
+			},
+			loadfile(THEME:GetPathB("","ScreenStageInformation/boss"))()
 		}
 	elseif IsSongEx(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("ex")..{ OnCommand=function(self) self:play() end },
-			LoadActor(THEME:GetPathB("","ScreenStageInformation/ex"))
+			Def.Sound {
+				File = THEME:GetPathB("ScreenStageInformation","in/ex.ogg"),
+				OnCommand=function(self) self:play() end
+			},
+			loadfile(THEME:GetPathB("","ScreenStageInformation/ex"))()
 		}
 	elseif IsSongDash(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("dash")..{ OnCommand=function(self) self:play() end },
-			LoadActor(THEME:GetPathB("","ScreenStageInformation/dash"))
+			Def.Sound {
+				File = THEME:GetPathB("ScreenStageInformation","in/dash.ogg"),
+				OnCommand=function(self) self:play() end
+			},
+			loadfile(THEME:GetPathB("","ScreenStageInformation/dash"))()
 		}
 	elseif IsSongNonstop(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("nonstop")..{ OnCommand=function(self) self:play() end },
-			LoadActor(THEME:GetPathB("","ScreenStageInformation/nonstop"))
+			Def.Sound {
+				File = THEME:GetPathB("ScreenStageInformation","in/nonstop.ogg"),
+				OnCommand=function(self) self:play() end
+			},
+			loadfile(THEME:GetPathB("","ScreenStageInformation/nonstop"))()
 		}
 	elseif IsSongRemix(SongTit) then
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("remix")..{ OnCommand=function(self) self:play() end },
-			LoadActor(THEME:GetPathB("","ScreenStageInformation/remix"))
+			Def.Sound {
+				File = THEME:GetPathB("ScreenStageInformation","in/remix.ogg"),
+				OnCommand=function(self) self:play() end
+			},
+			loadfile(THEME:GetPathB("","ScreenStageInformation/remix"))()
 		}
 	else
 		t[#t+1] = Def.ActorFrame{
-			LoadActor("normal")..{ OnCommand=function(self) self:play() end },
-			LoadActor(THEME:GetPathB("","ScreenStageInformation/normal"))
+			Def.Sound {
+				File = THEME:GetPathB("ScreenStageInformation","in/normal.ogg"),
+				OnCommand=function(self) self:play() end
+			},
+			loadfile(THEME:GetPathB("","ScreenStageInformation/normal"))()
 		}
 	end
 end

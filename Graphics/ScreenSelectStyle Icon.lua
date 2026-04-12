@@ -3,7 +3,8 @@ return Def.ActorFrame{
 	Def.ActorFrame{
 		GainFocusCommand=THEME:GetMetric(Var "LoadingScreen","BGGainFocusCommand"),
 		LoseFocusCommand=THEME:GetMetric(Var "LoadingScreen","BGLoseFocusCommand"),
-		LoadActor(THEME:GetPathG("_SelectIcon",gc:GetName().." icon"))..{
+		Def.Sprite {
+			Texture = THEME:GetPathG("_SelectIcon",gc:GetName().." icon"),
 			InitCommand=function(self) self:zoom(WideScreenDiff()) end,
 			OnCommand=function(self) self:Center():diffusealpha(0):linear(0.5):diffusealpha(1) end,
 			OffCommand=function(self) self:diffusealpha(1):linear(0.5):diffusealpha(0) end
@@ -12,7 +13,8 @@ return Def.ActorFrame{
 	Def.ActorFrame{
 		GainFocusCommand=THEME:GetMetric(Var "LoadingScreen","IconGainFocusCommand"),
 		LoseFocusCommand=THEME:GetMetric(Var "LoadingScreen","IconLoseFocusCommand"),
-		LoadActor(THEME:GetPathG("_SelectIcon",gc:GetName().." bg"))..{
+		Def.Sprite {
+			Texture = THEME:GetPathG("_SelectIcon",gc:GetName().." bg"),
 			InitCommand=function(self) self:zoom(WideScreenDiff()) end,
 			OnCommand=function(self) self:Center():diffusealpha(0):linear(0.5):diffusealpha(1) end,
 			OffCommand=function(self) self:diffusealpha(1):linear(0.5):diffusealpha(0) end,

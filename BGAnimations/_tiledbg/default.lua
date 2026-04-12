@@ -1,5 +1,6 @@
 return Def.ActorFrame{
-	LoadActor("1")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("","_tiledbg/1"),
 		InitCommand=function(self) self:FullScreen() end,
 		OnCommand=function(self)
 			local w = DISPLAY:GetDisplayWidth() / self:GetWidth()

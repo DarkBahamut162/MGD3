@@ -1,20 +1,24 @@
 return Def.ActorFrame{
-	LoadActor("bg")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenMDCredits","decorations/bg"),
 		OnCommand=function(self) self:x(SCREEN_CENTER_X+1680):CenterY():blend(Blend.Add):linear(120):x(SCREEN_CENTER_X-2920) end
 	},
 	Def.Quad{
 		OnCommand=function(self) self:FullScreen():diffusecolor(Color.Black):diffusealpha(0.5) end
 	},
-	LoadActor("credits")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenMDCredits","decorations/credits"),
 		OnCommand=function(self) self:diffuse(color("0,0,0,0.5")):y(SCREEN_CENTER_Y+8):x(SCREEN_CENTER_X+2290):linear(60):x(SCREEN_CENTER_X-2930) end
 	},
-	LoadActor("credits")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenMDCredits","decorations/credits"),
 		OnCommand=function(self) self:x(SCREEN_CENTER_X+2280):y(SCREEN_CENTER_Y+8):linear(60):x(SCREEN_CENTER_X-2920) end
 	},
 	Def.Quad{
 		OnCommand=function(self) self:FullScreen():diffusecolor(Color.Black):diffusealpha(0):sleep(50):linear(2):diffusealpha(1) end
 	},
-	LoadActor("solong")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenMDCredits","decorations/solong"),
 		InitCommand=function(self) self:Center():diffusealpha(0) end,
 		OnCommand=function(self)
 			local width = self:GetWidth()

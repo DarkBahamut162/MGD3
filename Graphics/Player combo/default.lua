@@ -16,15 +16,18 @@ local course = nil
 local isSurvival = false
 
 return Def.ActorFrame{
-	LoadFont("Combo", "numbers")..{
+	Def.BitmapText {
+		File = "Combo numbers",
 		Name="Number",
 		OnCommand = THEME:GetMetric("Combo", "NumberOnCommand")
 	},
-	LoadActor("_combo")..{
+	Def.Sprite {
+		Texture = THEME:GetPathG("Player","combo/_combo"),
 		Name="ComboLabel",
 		OnCommand = THEME:GetMetric("Combo", "LabelOnCommand")
 	},
-	LoadActor("_misses")..{
+	Def.Sprite {
+		Texture = THEME:GetPathG("Player","combo/_misses"),
 		Name="MissesLabel",
 		OnCommand = THEME:GetMetric("Combo", "LabelOnCommand")
 	},

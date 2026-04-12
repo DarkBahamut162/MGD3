@@ -36,19 +36,23 @@ return Def.ActorFrame{
 		InitCommand=function(self)
 			cs = self:GetChildren()
 		end,
-		LoadFont("MusicList titles")..{
+		Def.BitmapText {
+			File = "MusicList titles",
 			Name="Title",
 			InitCommand=function(self) self:horizalign(left):x(-134*WideScreenDiff()):y(2):zoomx(0.82*WideScreenDiff()):zoomy(0.82) end
 		},
-		LoadFont("MusicList titles")..{
+		Def.BitmapText {
+			File = "MusicList titles",
 			Name="Artist",
 			InitCommand=function(self) self:horizalign(left):x(-134*WideScreenDiff()):y(24):zoomx(0.82*WideScreenDiff()):zoomy(0.82) end
 		},
-		LoadFont("ScreenSelectMusic total time")..{
+		Def.BitmapText {
+			File = "ScreenSelectMusic total time",
 			Name="Time",
 			InitCommand=function(self) self:horizalign(center):y(88):x(69*WideScreenDiff()):zoomx(WideScreenDiff()) end
 		},
-		LoadFont("ScreenSelectMusic total time")..{
+		Def.BitmapText {
+			File = "ScreenSelectMusic total time",
 			Name="TrueTime",
 			InitCommand=function(self) self:horizalign(center):y(88):x(69*WideScreenDiff()):zoomx(WideScreenDiff()) end
 		},
@@ -216,7 +220,8 @@ return Def.ActorFrame{
 				end
 			end
 		},
-		LoadFont("Panedisplay Blurred")..{
+		Def.BitmapText {
+			File = "Panedisplay Blurred",
 			InitCommand=function(self) self:zoom(0.35):horizalign(left):y(69):x(-132*WideScreenDiff()):maxwidth(160):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()) end,
 			SetCommand=function(self)
 				local name = "STEPS"
@@ -243,19 +248,22 @@ return Def.ActorFrame{
 				self:settext(name)
 			end
 		},
-		LoadFont("Panedisplay Blurred")..{
+		Def.BitmapText {
+			File = "Panedisplay Blurred",
 			InitCommand=function(self) self:horizalign(left):y(90):x(-132*WideScreenDiff()):maxwidth(160):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("JUMPS")
 			end
 		},
-		LoadFont("Panedisplay Blurred")..{
+		Def.BitmapText {
+			File = "Panedisplay Blurred",
 			InitCommand=function(self) self:horizalign(left):y(111):x(-132*WideScreenDiff()):maxwidth(160):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("HANDS")
 			end
 		},
-		LoadFont("Panedisplay Blurred")..{
+		Def.BitmapText {
+			File = "Panedisplay Blurred",
 			InitCommand=function(self) self:horizalign(left):y(132):x(-132*WideScreenDiff()):maxwidth(160):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				local name = "HOLDS"
@@ -280,21 +288,24 @@ return Def.ActorFrame{
 				self:settext(name)
 			end
 		},
-		LoadFont("Panedisplay Blurred")..{
+		Def.BitmapText {
+			File = "Panedisplay Blurred",
 			InitCommand=function(self) self:horizalign(left):y(70):x(10*WideScreenDiff()):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("S O N G   L E N G T H"):maxwidth(360)
 				self:effectclock('timer'):diffuseshift():effectcolor1(color("#FFFFFFFF")):effectcolor2(color("#00000000")):effectperiod(4)
 			end
 		},
-		LoadFont("Panedisplay Blurred")..{
+		Def.BitmapText {
+			File = "Panedisplay Blurred",
 			InitCommand=function(self) self:horizalign(left):y(70):x(10*WideScreenDiff()):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("T R U E   L E N G T H"):maxwidth(360)
 				self:effectclock('timer'):diffuseshift():effectcolor1(color("#00000000")):effectcolor2(color("#FFFFFFFF")):effectperiod(4)
 			end
 		},
-		LoadFont("Panedisplay Blurred")..{
+		Def.BitmapText {
+			File = "Panedisplay Blurred",
 			InitCommand=function(self) self:horizalign(left):y(115):x(10*WideScreenDiff()):diffusealpha(0.6):zoomx(0.35*WideScreenDiff()):zoomy(0.35) end,
 			SetCommand=function(self)
 				self:settext("B P M")
@@ -307,7 +318,8 @@ return Def.ActorFrame{
 				end
 			end
 		},
-		LoadFont("Panedisplay Text")..{
+		Def.BitmapText {
+			File = "Panedisplay Text",
 			InitCommand=function(self) self:horizalign(right):y(70):x(-11*WideScreenDiff()):maxwidth(170):zoomx(0.36*WideScreenDiff()):zoomy(0.36) end,
 			SetCommand=function(self)
 				local name = ""
@@ -332,7 +344,8 @@ return Def.ActorFrame{
 				self:settext(name)
 			end
 		},
-		LoadFont("Panedisplay Text")..{
+		Def.BitmapText {
+			File = "Panedisplay Text",
 			InitCommand=function(self) self:horizalign(right):y(91):x(-11*WideScreenDiff()):maxwidth(170):zoomx(0.36*WideScreenDiff()):zoomy(0.36) end,
 			SetCommand=function(self)
 				local name = ""
@@ -357,7 +370,8 @@ return Def.ActorFrame{
 				self:settext(name)
 			end
 		},
-		LoadFont("Panedisplay Text")..{
+		Def.BitmapText {
+			File = "Panedisplay Text",
 			InitCommand=function(self) self:horizalign(right):y(112):x(-11*WideScreenDiff()):maxwidth(170):zoomx(0.36*WideScreenDiff()):zoomy(0.36) end,
 			SetCommand=function(self)
 				local name = ""
@@ -382,7 +396,8 @@ return Def.ActorFrame{
 				self:settext(name)
 			end
 		},
-		LoadFont("Panedisplay Text")..{
+		Def.BitmapText {
+			File = "Panedisplay Text",
 			InitCommand=function(self) self:horizalign(right):y(133):x(-11*WideScreenDiff()):maxwidth(170):zoomx(0.36*WideScreenDiff()):zoomy(0.36) end,
 			SetCommand=function(self)
 				local name = ""

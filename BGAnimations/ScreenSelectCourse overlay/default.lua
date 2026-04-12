@@ -5,44 +5,51 @@ local bgWidth = (SCREEN_WIDTH-sideWidth)
 return Def.ActorFrame{
 	Def.ActorFrame{
 		InitCommand=function(self) cc = self:GetChildren() end,
-		LoadActor("tile")..{
+		loadfile(THEME:GetPathB("ScreenSelectCourse","overlay/tile"))()..{
 			OnCommand=function(self) self:blend(Blend.Add):diffusealpha(0.2) end
 		},
-		LoadActor("side")..{
+		Def.Sprite {
+			Texture = THEME:GetPathB("ScreenSelectCourse","overlay/side"),
 			Name="Side",
 			InitCommand=function(self) self:halign(0):valign(0):zoomtowidth(sideWidth) end
 		},
-		LoadActor("background")..{
+		Def.Sprite {
+			Texture = THEME:GetPathB("ScreenSelectCourse","overlay/background"),
 			Name="Background",
 			InitCommand=function(self) self:x(sideWidth):halign(0):valign(0):zoomtowidth(SCREEN_WIDTH-sideWidth) end
 		},
-		LoadActor("border")..{
+		Def.Sprite {
+			Texture = THEME:GetPathB("ScreenSelectCourse","overlay/border"),
 			Name="Left",
 			InitCommand=function(self) self:x(sideWidth):halign(0):valign(0) end
 		},
-		LoadActor("border")..{
+		Def.Sprite {
+			Texture = THEME:GetPathB("ScreenSelectCourse","overlay/border"),
 			Name="right",
 			InitCommand=function(self) self:x(SCREEN_RIGHT):halign(0):valign(0):zoomx(-1) end
 		},
-		LoadActor("course")..{
+		Def.Sprite {
+			Texture = THEME:GetPathB("ScreenSelectCourse","overlay/course"),
 			Name="BG1",
 			InitCommand=function(self) self:x(sideWidth+bgWidth/2):zoomx(WideScreenDiff()):valign(0) end
 		},
-		LoadActor("../ScreenSelectMusic overlay/folder")..{
+		Def.Sprite {
+			Texture = THEME:GetPathB("ScreenSelectMusic","overlay/folder"),
 			Name="BG2",
 			InitCommand=function(self) self:x(sideWidth+bgWidth/2):zoomx(WideScreenDiff()):valign(0) end
 		},
-		LoadActor("../ScreenSelectMusic overlay/difflist")..{
+		loadfile(THEME:GetPathB("ScreenSelectMusic","overlay/difflist"))()..{
 			InitCommand=function(self) self:Center():addx(40*WideScreenDiff()):addy(-140) end
 		},
-		LoadActor("../ScreenSelectMusic overlay/scoring")..{
+		loadfile(THEME:GetPathB("ScreenSelectMusic","overlay/scoring"))()..{
 			InitCommand=function(self) self:Center():addx(180*WideScreenDiff()):addy(-117) end
 		},
-		LoadActor("data")..{
+		loadfile(THEME:GetPathB("ScreenSelectCourse","overlay/data"))()..{
 			InitCommand=function(self) self:Center():addx(106*WideScreenDiff()):addy(-12) end
 		},
-		LoadActor("accel"),
-		LoadFont("Panedisplay Blurred")..{
+		loadfile(THEME:GetPathB("ScreenSelectCourse","overlay/accel"))(),
+		Def.BitmapText {
+			File = "Panedisplay Blurred",
 			InitCommand=function(self) self:x(SCREEN_CENTER_X+100*WideScreenDiff()):y(SCREEN_BOTTOM-69):settext("ACCELERATION"):diffuse(color('#808080')):zoom(1/4) end,
 		},
 		SetBGCommand=function(self)

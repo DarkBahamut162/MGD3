@@ -15,7 +15,8 @@ local isAutoPlay = GAMESTATE:GetPlayerState(player):GetPlayerController() == "Pl
 
 for i = 1, GAMESTATE:GetCurrentStyle():ColumnsPerPlayer() do
 	local xPos = GAMESTATE:GetCurrentStyle():GetColumnInfo(player, i).XOffset
-	HoldJudgments[#HoldJudgments + 1] = LoadActor("../HoldJudgment label 1x2")..{
+	HoldJudgments[#HoldJudgments + 1] = Def.Sprite {
+		Texture = THEME:GetPathG("","HoldJudgment label 1x2"),
 		Name="Judgment"..i,
 		InitCommand = function(self) self:x(xPos):diffusealpha(0):pause() end,
 		OnCommand=function(self) screen = SCREENMAN:GetTopScreen() end,

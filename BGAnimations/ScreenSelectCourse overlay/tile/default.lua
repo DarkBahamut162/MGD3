@@ -1,5 +1,6 @@
 return Def.ActorFrame{
-	LoadActor("micro")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenSelectCourse","overlay/tile/micro"),
 		InitCommand=function(self) self:FullScreen() end,
 		OnCommand=function(self)
 			local w = DISPLAY:GetDisplayWidth() / self:GetWidth()

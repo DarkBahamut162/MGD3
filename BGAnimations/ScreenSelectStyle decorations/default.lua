@@ -1,5 +1,6 @@
 return Def.ActorFrame{
-	LoadActor("header")..{
+	Def.Sprite {
+		Texture = THEME:GetPathB("ScreenSelectStyle","decorations/header"),
 		InitCommand=function(self) self:Center():zoom(WideScreenDiff()) end
 	}
 }
